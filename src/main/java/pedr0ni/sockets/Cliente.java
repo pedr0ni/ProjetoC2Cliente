@@ -13,8 +13,6 @@ public class Cliente {
 
     public Cliente(String host, int port) throws IOException {
         this.client = new Socket(host, port);
-        System.out.println("Reached 1");
-        this.outputStream = new ObjectOutputStream(this.client.getOutputStream());
     }
 
     public boolean isConnected() {
@@ -22,6 +20,8 @@ public class Cliente {
     }
 
     public void send(Object obj) throws IOException {
+        if (this.outputStream == null)
+            this.outputStream = new ObjectOutputStream(this.client.getOutputStream());
         this.outputStream.writeObject(obj);
         this.outputStream.flush();
     }
