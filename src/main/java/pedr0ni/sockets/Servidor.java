@@ -23,8 +23,7 @@ public class Servidor {
     }
 
     public void send(Object obj) throws IOException {
-        if (this.outputStream == null)
-            this.outputStream = new ObjectOutputStream(this.client.getOutputStream());
+        this.outputStream = new ObjectOutputStream(this.client.getOutputStream());
         this.outputStream.writeObject(obj);
         this.outputStream.flush();
     }
@@ -47,7 +46,12 @@ public class Servidor {
     }
 
     public Musica[] getAll() throws IOException, ClassNotFoundException {
-        Protocol res = request(new Protocol("con", new Object[] {""}));
+        Protocol res = request(new Protocol("con", new Object[] {}));
+        return Arrays.copyOf(res.getArgs(), res.getArgs().length, Musica[].class);
+    }
+
+    public Musica[] find(String criteria, String busca) throws IOException, ClassNotFoundException {
+        Protocol res = request(new Protocol("con", new Object[] {criteria, busca}));
         return Arrays.copyOf(res.getArgs(), res.getArgs().length, Musica[].class);
     }
 

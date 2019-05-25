@@ -1,14 +1,11 @@
 package pedr0ni;
 
-import java.util.Arrays;
-
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
-import pedr0ni.models.Musica;
 import pedr0ni.sockets.*;
-import pedr0ni.ui.MainWindow;
+import pedr0ni.ui.NewJFrame;
 
 /**
  * Hello world!
@@ -31,7 +28,6 @@ public class App {
             JOptionPane.showMessageDialog(null, "Não foi possível iniciar o ProjetoMusicas por: \n" + e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
             return;
         }
-        new MainWindow(con).setVisible(true);
-        System.out.println("Exiting...");
+        new NewJFrame(con).setVisible(true);
     }
 }
